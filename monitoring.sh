@@ -8,8 +8,8 @@ disk=$(df -Bm | grep -v /boot$ | awk '/^\/dev/ { ut+=$3 ; tt+=$2 } \
 	END { printf "%s/%iGb (%.0f%%)", ut, tt/1024, ut*100/tt }')
 cpul=$(top -bn1 | awk -F ',' '/^%Cpu/ { printf "%.1f%%", 100-$4 }')
 lb=$(who -b | awk '{ print $3, $4 }')
-lvm=$(lvs -o lv_active | awk '/active/ { ac += 1 } END { if (ac == 7) \
-	{ print "yes"} else { print "no"} }')
+lvm=$(/usr/sbin/lvs -o active | awk '/active/ { ac += 1 } END { if (ac == 7) \
+	{ print "yes" } else { print "no"} }')
 tcp=$(ss -tp | grep ESTAB | wc -l | xargs -I. echo . ESTABLISHED)
 usrs=$(who -u | wc -l)
 ip=$(ip -o -4 addr | awk '/^2/ { print "IP", $4 }')
