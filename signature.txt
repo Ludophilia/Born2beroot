@@ -1,1 +1,1 @@
-please sha1sum <disk>.vdi
+8d597939014e68db721bb5f637b48dc37e47bf5b
