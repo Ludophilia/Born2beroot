@@ -147,8 +147,8 @@ AFTER <col> | <coln1> <typen1>...];`
 
 ```
 ALTER TABLE Crusaders ADD sex CHAR(1) LAST last_name;
-
 ```
+
 #### Adding table contraints
 
 `ALTER TABLE <table> ADD [CONSTRAINT '<key_name>'] {PRIMARY KEY | UNIQUE}
@@ -253,11 +253,41 @@ UPDATE Crusaders SET first_name='Iggy', last_name=NULL, gender='M' WHERE id=7;
 
 ## Reading data stores
 
+### Get the statement that created the table
+
 `SHOW CREATE TABLE <table>;`
 
-`SELECT <table> FROM <database> 
-[WHERE [NOT] <coln>=<value> [or <coln>=<value>...]] 
-[ORDER BY <coln> [ASC|DESC]];`
+```
+SHOW CREATE TABLE Alive;
+```
+
+#### More
+
+* [SHOW CREATE TABLE](https://dev.mysql.com/doc/refman/5.7/en/show-create-table.html)
+(mysql documentation)
+
+### Read rows on the table
+
+`SELECT [ALL | DISTINCT] (* | <table1>[, <table2>...] | <expr>) FROM <database_expr> 
+[WHERE [NOT] <condition>] [ORDER BY <coln> [ASC|DESC]]
+[LIMIT <row_count>];`
+
+```
+SELECT * FROM Crusaders;
+
+SELECT first_name, last_name, gender FROM Crusaders WHERE 
+first_name='Dio' or first_name='Joseph';
+
+SELECT id, first_name FROM Crusaders WHERE last_name IS NULL;
+
+SELECT id, first_name, last_name FROM Crusaders WHERE NOT first_name='Dio'
+ORDER BY last_name ASC LIMIT 2;
+```
+
+#### More
+
+* [SELECT](https://dev.mysql.com/doc/refman/5.7/en/select.html)
+(mysql documentation)
 
 ## Deleting data stores and actores
 
@@ -276,7 +306,7 @@ UPDATE Crusaders SET first_name='Iggy', last_name=NULL, gender='M' WHERE id=7;
 
 `DROP DATABASE [IF EXISTS] <database>`
 
-## Live Examples
+## Live examples
 
 * [https://github.com/Ludophilia/P5](https://github.com/Ludophilia/P5)
 * [https://github.com/Ludophilia/P6](https://github.com/Ludophilia/P6)
