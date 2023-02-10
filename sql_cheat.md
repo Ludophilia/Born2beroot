@@ -183,7 +183,7 @@ AFTER <col>];`
 
 ```
 ALTER TABLE Crusaders MODIFY first_name VARCHAR(50) NOT NULL;
-ALTER TABLE Crusaders MODIFY last_name VARCHAR(50) NOT NULL;
+ALTER TABLE Crusaders MODIFY last_name VARCHAR(50);
 ```
 
 #### Removing tables columns
@@ -207,45 +207,57 @@ ALTER TABLE Alive ADD PRIMARY KEY (alive);
 ALTER TABLE Alive DROP PRIMARY KEY;
 ```
 
-#### More 
+### More 
 
 * [ALTER TABLE](https://dev.mysql.com/doc/refman/5.7/en/alter-table.html)
 (mysql documentation)
 
+## Writing into data stores 
 
+### Writing data for the first time
 
-
-
-## Writing data
-
-###
-
-`INSERT INTO <table> VALUES
-(<val_col1>, <val_col2>...), (<val_col1>, <val_col2>)...;`
+`INSERT INTO <table> [(<col1>, <col2>...)] VALUES
+(<val_col1>, <val_col2>...)[, (<val_col1>, <val_col2>)...];`
 
 ```
-INSERT INTO Crusaders VALUES (1, 'Dio', 'Brando');
+INSERT INTO Crusaders (first_name, last_name, gender) VALUES
+('Dio', 'Brando', M);
+
 INSERT INTO Students VALUES 
-	(2, 'Jotaro', 'Kujou'),
-	(3, 'Mohammad', 'Avdol'),
-	(4, 'Jean-Pierre', 'Polnareff'),
-	(5, 'Joseph', 'Joestar'), 
-	(6, 'Noriaki', 'Kakyoin');
+	(2, 'Jotaro', 'Kujou', 'M'),
+	(3, 'Muhammad', 'Avdol', 'M'),
+	(4, 'Jean-Pierre', 'Polnareff', 'M'),
+	(5, 'Joseph', 'Joestar', 'M'), 
+	(6, 'Noriaki', 'Kakyoin', 'M'),
+	(7, 'Hitori', 'Gotou', 'F');
 ```
 
-###
+#### More
 
-`UPDATE SET`
+* [INSERT](https://dev.mysql.com/doc/refman/5.7/en/insert.html)
+(mysql documentation)
 
-## Fetching data
+### Modifying a specific row
+
+`UPDATE <table> SET <col1>=<value1>[, <col2>=<value2>...]
+[WHERE <condition(s)>] [ORDER BY <col> [ASC | DESC]] [LIMIT <nb_rows>];`
+
+```
+UPDATE Crusaders SET first_name='Iggy', last_name=NULL, gender='M' WHERE id=7; 
+```
+
+#### More
+
+* [UPDATE](https://dev.mysql.com/doc/refman/5.7/en/update.html)
+(mysql documentation)
+
+## Reading data stores
 
 `SHOW CREATE TABLE <table>;`
 
 `SELECT <table> FROM <database> 
 [WHERE [NOT] <coln>=<value> [or <coln>=<value>...]] 
 [ORDER BY <coln> [ASC|DESC]];`
-
-ex : 
 
 ## Deleting data stores and actores
 
