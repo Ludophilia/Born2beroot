@@ -1,4 +1,4 @@
-# MariaDB + SQL Basics
+# MariaDB + SQL
 
 
 ## Initial Setup
@@ -31,15 +31,18 @@
 
 ### Selecting Databases
 
-```SHOW DATABASES;```
-```USE <database>;```
+`SHOW DATABASES;`
+
+`USE <database>;`
 
 	SHOW TABLES;
 	USE mysql;
 
 ### Consulting Tables
 
-`SHOW TABLES;` `DESCRIBE <table>;`
+`SHOW TABLES;` 
+
+`DESCRIBE <table>;`
 
 	SHOW TABLES;
 	DESCRIBE user;
@@ -65,7 +68,7 @@
 #### More
 
 * [CREATE USER](https://dev.mysql.com/doc/refman/8.0/en/create-user.html)
-(mysql documentation)
+(MySQL Documentation)
 
 ### Database Creation
 
@@ -76,9 +79,9 @@
 #### More
 
 * [CREATE DATABASE](https://dev.mysql.com/doc/refman/5.7/en/create-database.html)
-(mysql documentation)
+(MySQL Documentation)
 * [Character sets](https://dev.mysql.com/doc/refman/5.7/en/charset.html)
-(mysql documentation)
+(MySQL Documentation)
 
 ### Table Creation
 
@@ -103,10 +106,10 @@ CREATE TABLE Crusaders (
 #### More
 
 * [CREATE TABLE](https://dev.mysql.com/doc/refman/5.7/en/create-table.html)
-(mysql documentation)
-* [mysql datatypes](https://www.w3schools.com/mysql/mysql_datatypes.asp)
+(MySQL Documentation)
+* [MySQL datatypes](https://www.w3schools.com/mysql/mysql_datatypes.asp)
 (W3Schools)
-* [mysql contraints](https://www.w3schools.com/mysql/mysql_constraints.asp)
+* [MySQL contraints](https://www.w3schools.com/mysql/mysql_constraints.asp)
 (W3Schools)
 
 ## Updating data stores and actors
@@ -118,16 +121,17 @@ CREATE TABLE Crusaders (
 `FLUSH PRIVILEGES;`
 
 	GRANT CREATE, SELECT, UPDATE, DROP, DELETE 
-	ON Characters.Crusaders TO hirohiko;
+	ON characters.Crusaders TO hirohiko;
 	FLUSH PRIVILEGES;
 
 #### More
+
 * [Privileges](https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html)
-(mysql documentation)
+(MySQL Documentation)
 * [GRANT](https://dev.mysql.com/doc/refman/5.7/en/grant.html)
-(mysql documentation)
+(MySQL Documentation)
 * [FLUSH PRIVILEGES](https://dev.mysql.com/doc/refman/5.7/en/flush.html#flush-privileges)
-(mysql documentation)
+(MySQL Documentation)
 
 ### Table Update
 
@@ -191,8 +195,8 @@ ALTER TABLE Crusaders MODIFY last_name VARCHAR(50);
 `ALTER TABLE <table> DROP [COLUMN];`
 
 ```
-ALTER TABLE Crusaders ADD fuckable BOOL NOT NULL;
-ALTER TABLE Crusaders DROP fuckable;
+ALTER TABLE Crusaders ADD immortal BOOL NOT NULL;
+ALTER TABLE Crusaders DROP immortal;
 ```
 
 #### Removing tables
@@ -210,7 +214,7 @@ ALTER TABLE Alive DROP PRIMARY KEY;
 ### More 
 
 * [ALTER TABLE](https://dev.mysql.com/doc/refman/5.7/en/alter-table.html)
-(mysql documentation)
+(MySQL Documentation)
 
 ## Writing into data stores 
 
@@ -235,7 +239,7 @@ INSERT INTO Students VALUES
 #### More
 
 * [INSERT](https://dev.mysql.com/doc/refman/5.7/en/insert.html)
-(mysql documentation)
+(MySQL Documentation)
 
 ### Modifying a specific row
 
@@ -249,7 +253,7 @@ UPDATE Crusaders SET first_name='Iggy', last_name=NULL, gender='M' WHERE id=7;
 #### More
 
 * [UPDATE](https://dev.mysql.com/doc/refman/5.7/en/update.html)
-(mysql documentation)
+(MySQL Documentation)
 
 ## Reading data stores
 
@@ -264,7 +268,7 @@ SHOW CREATE TABLE Alive;
 #### More
 
 * [SHOW CREATE TABLE](https://dev.mysql.com/doc/refman/5.7/en/show-create-table.html)
-(mysql documentation)
+(MySQL Documentation)
 
 ### Read rows on the table
 
@@ -287,24 +291,63 @@ ORDER BY last_name ASC LIMIT 2;
 #### More
 
 * [SELECT](https://dev.mysql.com/doc/refman/5.7/en/select.html)
-(mysql documentation)
+(MySQL Documentation)
 
-## Deleting data stores and actores
+## Deleting data stores and actors
+
+### Data deletion
+
+`DELETE FROM <database_expr> [WHERE [NOT] <condition>] 
+[ORDER BY <coln> [ASC|DESC]] [LIMIT <row_count>];`
+
+```
+DELETE FROM Crusaders WHERE first_name='Dio';
+```
+
+#### More
+
+* [DELETE](https://dev.mysql.com/doc/refman/5.7/en/delete.html)
+(MySQL Documentation)
 
 ### User deletion
 
-`DROP USER '<user>'[@'<host>';`
+`DROP USER [IF EXISTS] '<user>'[@'<host>'][, '<user>'[@'<host>']...];`
 
-	DROP USER hirohiko;
-	DROP USER hitori@localhost;
+```
+DROP USER hirohiko;
+DROP USER hitori@localhost;
+```
+
+#### More
+
+* [DROP USER](https://dev.mysql.com/doc/refman/5.7/en/drop-user.html)
+(MySQL Documentation)
 
 ### Table deletion
 
-`DROP TABLE [IF EXISTS] <table1> [<table2>...] [CASCADE];`
+`DROP TABLE [IF EXISTS] <table1> [, <table2>...];`
+
+```
+DROP TABLE Alive, Crusaders;
+```
+
+#### More
+
+* [DROP TABLE](https://dev.mysql.com/doc/refman/5.7/en/drop-table.html)
+(MySQL Documentation)
 
 ### Database deletion
 
-`DROP DATABASE [IF EXISTS] <database>`
+`DROP DATABASE [IF EXISTS] <database>;`
+
+```
+DROP TABLE characters;
+```
+
+#### More
+
+* [DROP DATABASE](https://dev.mysql.com/doc/refman/5.7/en/drop-database.html)
+(MySQL Documentation)
 
 ## Live examples
 
